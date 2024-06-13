@@ -45,3 +45,11 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           command-prefix: 'npx cypress run'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-headless-chrome
+          path: ./browser/cypress/screenshots
+
+      - run: npx image-size cypress/screenshots/**/*.png
+        working-directory: ./browser
